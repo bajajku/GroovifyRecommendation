@@ -7,9 +7,17 @@ from langchain.text_splitter import CharacterTextSplitter
 from langchain.document_loaders import TextLoader
 from langchain.chains import create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
-from config import HF_API_KEY, REPO_ID, DATA_FILE, MODEL_NAME
+import os
+from dotenv import load_dotenv
+
 
 def setup_chain():
+
+    load_dotenv()
+    HF_API_KEY = os.getenv("HF_API_KEY")
+    REPO_ID = os.getenv("REPO_ID")
+    DATA_FILE = os.getenv("DATA_FILE")
+    MODEL_NAME = os.getenv("MODEL_NAME")
     # 1. Set up the Hugging Face API
     llm = HuggingFaceEndpoint(
         repo_id=REPO_ID,
