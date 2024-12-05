@@ -42,18 +42,16 @@ def setup_chain():
 
     # 5. Create the RAG chain
     template = '''
-        <s>[INST] 
+    <s>[INST] 
     Use the context {context} and recommend only 3 genres to the user based on the user's mood input. Do not provide anything else. 
     Make sure these genres are present in the context. 
     User Input: {input} 
 
     Your output MUST only provide genres and nothing else. 
     Output should follow this format:
-    Genre: [put genre here]
-    Genre: [put genre here]
-    Genre: [put genre here]
+    Genre: [put genres here]
     [/INST]
-        '''
+    '''
 
     prompt = PromptTemplate(template=template)
 
