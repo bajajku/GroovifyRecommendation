@@ -12,11 +12,11 @@ class QueryRequest(BaseModel):
 # Load the chain
 chain = setup_chain()
 
-# Define the endpoint
 @app.post("/recommendation")
-async def get_recommendation(query: QueryRequest):
-    result = await chain.invoke({"input": query.mood})
-    response = {"genres": result['answer']}
+def get_recommendation(query: QueryRequest):
+    result = chain.invoke({"input": query.mood})
+    genres = result['answer'].replace("Genre: ", "").split(", ")
+    response = {"genres": genres}
     return response
 
 if __name__ == "__main__":
