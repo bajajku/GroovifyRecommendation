@@ -1,5 +1,5 @@
 # main_logic.py
-from langchain.vectorstores import FAISS
+from langchain_community.vectorstores import FAISS
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain_huggingface import HuggingFaceEndpoint
 from langchain.prompts import PromptTemplate
@@ -13,11 +13,17 @@ from dotenv import load_dotenv
 
 def setup_chain():
 
-    load_dotenv()
-    HF_API_KEY = os.getenv("HF_API_KEY")
-    REPO_ID = os.getenv("REPO_ID")
-    DATA_FILE = os.getenv("DATA_FILE")
-    MODEL_NAME = os.getenv("MODEL_NAME")
+    # load_dotenv()
+    # HF_API_KEY = os.getenv("HF_API_KEY")
+    # REPO_ID = os.getenv("REPO_ID")
+    # DATA_FILE = os.getenv("DATA_FILE")
+    # MODEL_NAME = os.getenv("MODEL_NAME")
+
+    HF_API_KEY = os.environ.get("HF_API_KEY")
+    REPO_ID = os.environ.get("REPO_ID")
+    DATA_FILE = os.environ.get("DATA_FILE")
+    MODEL_NAME = os.environ.get("MODEL_NAME")
+    
     # 1. Set up the Hugging Face API
     llm = HuggingFaceEndpoint(
         repo_id=REPO_ID,
