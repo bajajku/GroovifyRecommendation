@@ -1,5 +1,6 @@
 # main_logic.py
 from langchain_community.vectorstores import FAISS
+from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_huggingface import HuggingFaceEndpoint
 from langchain.prompts import PromptTemplate
 from langchain.text_splitter import CharacterTextSplitter
@@ -22,7 +23,7 @@ def setup_chain():
     REPO_ID = os.environ.get("REPO_ID")
     DATA_FILE = os.environ.get("DATA_FILE")
     MODEL_NAME = os.environ.get("MODEL_NAME")
-
+    
     # 1. Set up the Hugging Face API
     llm = HuggingFaceEndpoint(
         repo_id=REPO_ID,
